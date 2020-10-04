@@ -5,61 +5,104 @@ __version__ = "1.0.0"
 __email__ = "nmgaston@gmail.com"
 
 import random
-from typing import List
+from enum import Enum
+from typing import List, Optional, Dict
+
+
+class Equipment(Enum):
+    dumbbells = 0
+    kettle_bell = 1
 
 
 class Exercise(object):
     """Different exercises used for various types of cards.  Contains the list of exercises and randomly selects
     from each list.
+
+    @param equipment: Available equipment
     """
 
-    def __init__(self) -> None:
-        self._upper_body = ['Windmill Pushups', 'Diamond Pushups', 'Hammer Curls', 'Tricep Dips', 'Chest Press',
-                            'Bicep Curls', 'Arnold Presses', 'Bent Over Rows', 'Spiderman Pushups', 'DB Lateral Raises']
-        self._lower_body = ['Backwards Lunges', 'Forward Lunges', 'Squats', 'Goblet Squats', 'Tip Toe Squats',
-                            'Glute Bridge', 'Jumping Lunges', 'Split Jump Squats']
-        self._core = ['V-Ups', 'Bicycle Crunches', 'Flutter Kicks', 'Commandos', 'Situps', 'Russian Twists',
-                      'Supermans', 'Bird Dogs', 'Renegade Rows', 'Inch Worms', 'Leg Raises', 'Kickouts', 'Plank Jack']
-        self._total_body = ['Burpee', 'Thrusters', 'Pushups']
-        self._cardio = ['Jump Squats', 'Jumping Jacks', 'KB Swings', 'Snow Boarders',
-                        'Skaters', 'High Knees', 'Mountain Climbers', 'Tuck Jumps', 'Plank Jacks']
+    def __init__(self, equipment: Optional[List[str]] = None) -> None:
+        self._equipment = equipment
+
+        self._upper_body = {'Windmill Pushups': None, 'Diamond Pushups': None, 'Hammer Curls': Equipment.dumbbells,
+                            'Arnold Presses': Equipment.dumbbells, 'Bent Over Rows': Equipment.dumbbells,
+                            'Spiderman Pushups': None, 'DB Lateral Raises': Equipment.dumbbells}
+
+        self._lower_body = {'Backwards Lunges': None, 'Forward Lunges': None, 'Squats': None, 'Curtsy Lunge': None,
+                            'Goblet Squats': Equipment.kettle_bell, 'Tip Toe Squats': None, 'Glute Bridge': None,
+                            'Jumping Lunges': None, 'Split Jump Squats': None}
+
+        self._core = {'V-Ups': None, 'Bicycle Crunches': None, 'Flutter Kicks': None, 'Commandos': None,
+                      'Situps': None, 'Russian Twists': None, 'Supermans': None, 'Bird Dogs': None,
+                      'Renegade Rows': Equipment.dumbbells, 'Inch Worms': None, 'Leg Raises': None, 'Kickouts': None,
+                      'Plank Jack': None}
+
+        self._total_body = {'Burpees': None, 'Thrusters': Equipment.dumbbells, 'Pushups': None}
+
+        self._cardio = {'Jump Squats': None, 'Jumping Jacks': None, 'KB Swings': Equipment.kettle_bell,
+                        'Snow Boarders': None, 'Skaters': None, 'High Knees': None, 'Mountain Climbers': None,
+                        'Tuck Jumps': None, 'Plank Jacks': None}
 
     def get_upper_body_exercise(self) -> str:
         """Shuffles the upper body exercises and returns the first one in the queue as the selected exercise.
 
         @return: selected upper body exercise
         """
-        random.shuffle(self._upper_body)
-        return self._upper_body[0]
+        return self._get_equipped_exercise(self._upper_body)
 
     def get_lower_body_exercise(self) -> str:
         """Shuffles the lower body exercises and returns the first one in the queue as the selected exercise.
 
         @return: selected lower body exercise
         """
-        random.shuffle(self._lower_body)
-        return self._lower_body[0]
+        return self._get_equipped_exercise(self._lower_body)
 
     def get_core_exercise(self) -> str:
         """Shuffles the core exercises and returns the first one in the queue as the selected exercise.
 
         @return: selected core exercise
         """
-        random.shuffle(self._core)
-        return self._core[0]
+        return self._get_equipped_exercise(self._core)
 
     def get_total_body_exercise(self) -> str:
         """Shuffles the total body exercises and returns the first one in the queue as the selected exercise.
 
         @return: selected total body exercise
         """
-        random.shuffle(self._total_body)
-        return self._total_body[0]
+        return self._get_equipped_exercise(self._total_body)
 
     def get_cardio_exercises(self) -> List[str]:
         """Shuffles the cardio exercises and returns the entire sorted list.
 
         @return: shuffled cardio list
         """
-        random.shuffle(self._cardio)
-        return self._cardio
+        return self._get_equipped_exercises(self._cardio)
+
+    def _get_equipped_exercises(self, exercises: Dict[str, Equipment]) -> List[str]:
+        """Randomly picks an exercise that matches the exercise equipment available for the workout
+
+        @param exercises - Dictionary of exercises with exercise name and required equipment.
+        @return: List of all exercises matching equipment available.
+        """
+        equipped_exercises = []
+
+        for ex, eq in exercises.items():
+            if eq is None:
+                equipped_exercises.append(ex)
+                continue
+            if self._equipment:
+                if Equipment.dumbbells.name in self._equipment and eq == Equipment.dumbbells:
+                    equipped_exercises.append(ex)
+                elif Equipment.kettle_bell.name in self._equipment and eq == Equipment.kettle_bell:
+                    equipped_exercises.append(ex)
+
+        random.shuffle(equipped_exercises)
+        return equipped_exercises
+
+    def _get_equipped_exercise(self, exercises: Dict[str, Equipment]) -> str:
+        """Randomly picks an exercise that matches the exercise equipment available for the workout
+
+        @param exercises - Dictionary of exercises with exercise name and required equipment.
+        @return: Exercise that matches equipment available.
+        """
+        return self._get_equipped_exercises(exercises)[0]

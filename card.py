@@ -41,6 +41,6 @@ class Card(object):
         elif self._value == FaceCards.King.value:
             return "King of {} -> 20 {}".format(self._suite, self._exercise)
         elif self._value == 14:
-            return "Joker -> 1 minute rest".format()
+            return "Joker -> 1 minute rest"
         else:
             return "{} of {} -> {} {}".format(self._value, self._suite, self._value, self._exercise)

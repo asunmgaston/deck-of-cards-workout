@@ -24,22 +24,23 @@ class Exercise(object):
     def __init__(self, equipment: Optional[List[str]] = None) -> None:
         self._equipment = equipment
 
-        self._upper_body = {'Windmill Pushups': None, 'Diamond Pushups': None, 'Hammer Curls': Equipment.dumbbells,
-                            'Arnold Presses': Equipment.dumbbells, 'Bent Over Rows': Equipment.dumbbells,
-                            'Spiderman Pushups': None, 'DB Lateral Raises': Equipment.dumbbells}
+        self._upper_body = {'Windmill Pushups': None, 'Diamond Pushups': None, 'Hammer Curls (DB)': Equipment.dumbbells,
+                            'Arnold Presses (DB)': Equipment.dumbbells, 'Bent Over Rows (DB)': Equipment.dumbbells,
+                            'Spiderman Pushups': None, 'DB Lateral Raises (DB)': Equipment.dumbbells}
 
         self._lower_body = {'Backwards Lunges': None, 'Forward Lunges': None, 'Squats': None, 'Curtsy Lunge': None,
-                            'Goblet Squats': Equipment.kettle_bell, 'Tip Toe Squats': None, 'Glute Bridge': None,
+                            'Goblet Squats (KB)': Equipment.kettle_bell, 'Tip Toe Squats': None, 'Glute Bridge': None,
                             'Jumping Lunges': None, 'Split Jump Squats': None}
 
         self._core = {'V-Ups': None, 'Bicycle Crunches': None, 'Flutter Kicks': None, 'Commandos': None,
                       'Situps': None, 'Russian Twists': None, 'Supermans': None, 'Bird Dogs': None,
-                      'Renegade Rows': Equipment.dumbbells, 'Inch Worms': None, 'Leg Raises': None, 'Kickouts': None,
+                      'Renegade Rows (DB)': Equipment.dumbbells, 'Inch Worms': None, 'Leg Raises': None,
+                      'Kickouts': None,
                       'Plank Jack': None}
 
-        self._total_body = {'Burpees': None, 'Thrusters': Equipment.dumbbells, 'Pushups': None}
+        self._total_body = {'Burpees': None, 'Thrusters (DB)': Equipment.dumbbells, 'Pushups': None}
 
-        self._cardio = {'Jump Squats': None, 'Jumping Jacks': None, 'KB Swings': Equipment.kettle_bell,
+        self._cardio = {'Jump Squats': None, 'Jumping Jacks': None, 'KB Swings (KB)': Equipment.kettle_bell,
                         'Snow Boarders': None, 'Skaters': None, 'High Knees': None, 'Mountain Climbers': None,
                         'Tuck Jumps': None, 'Plank Jacks': None}
 
@@ -91,9 +92,9 @@ class Exercise(object):
                 equipped_exercises.append(ex)
                 continue
             if self._equipment:
-                if Equipment.dumbbells.name in self._equipment and eq == Equipment.dumbbells:
+                if Equipment.dumbbells in self._equipment and eq == Equipment.dumbbells:
                     equipped_exercises.append(ex)
-                elif Equipment.kettle_bell.name in self._equipment and eq == Equipment.kettle_bell:
+                elif Equipment.kettle_bell in self._equipment and eq == Equipment.kettle_bell:
                     equipped_exercises.append(ex)
 
         random.shuffle(equipped_exercises)

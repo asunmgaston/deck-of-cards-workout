@@ -7,16 +7,19 @@ __email__ = "nmgaston@gmail.com"
 import random
 import tkinter.font as tkFont
 from tkinter import Tk, Label, Button
+from typing import List
 
 from card import Card, FaceCards
 from constants import DIAMONDS, HEARTS, SPADES, CLUBS
-from exercise import Exercise
+from exercise import Exercise, Equipment
 
 
 class Deck(object):
     """Represents a deck of cards used as an exercise."""
 
-    def __init__(self) -> None:
+    def __init__(self, dumbbells: bool = False, kettle_bell: bool = False) -> None:
+        self._kettle_bell = kettle_bell
+        self._dumbbells = dumbbells
         self._deck = []
         self._create_deck()
         random.shuffle(self._deck)
@@ -31,8 +34,16 @@ class Deck(object):
 
         self._show_deck()
 
+    def _create_equipment_list(self) -> List[Equipment]:
+        eq = []
+        if self._kettle_bell:
+            eq.append(Equipment.kettle_bell)
+        if self._dumbbells:
+            eq.append(Equipment.dumbbells)
+        return eq
+
     def _create_deck(self) -> None:
-        ex = Exercise()
+        ex = Exercise(self._create_equipment_list())
 
         for s, e in [(DIAMONDS, ex.get_upper_body_exercise()), (CLUBS, ex.get_lower_body_exercise()),
                      (HEARTS, ex.get_core_exercise()), (SPADES, ex.get_total_body_exercise())]:

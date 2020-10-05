@@ -15,8 +15,14 @@ The deck-of-cards-workout automates the Deck of Cards Workout routine.
     - King - 20 reps
 4. Jokers are a 1 minute rest.
 
-The cards are shuffled and displayed in a GUI.  Push the button to rotate to the next exercise.
+## How to use
 
-Have fun! 
+####Optional arguments
+
+--dumbbells, -d = Dumbbells available
+
+--kettlebell, -k = Kettle bell available
+
+
      
 

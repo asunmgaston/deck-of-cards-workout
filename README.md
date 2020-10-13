@@ -17,7 +17,7 @@ The deck-of-cards-workout automates the Deck of Cards Workout routine.
 
 ## How to use
 
-####Optional arguments
+#### Optional arguments
 
 --dumbbells, -d = Dumbbells available
 

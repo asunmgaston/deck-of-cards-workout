@@ -26,19 +26,21 @@ class Exercise(object):
 
         self._upper_body = {'Windmill Pushups': None, 'Diamond Pushups': None, 'Hammer Curls (DB)': Equipment.dumbbells,
                             'Arnold Presses (DB)': Equipment.dumbbells, 'Bent Over Rows (DB)': Equipment.dumbbells,
-                            'Spiderman Pushups': None, 'DB Lateral Raises (DB)': Equipment.dumbbells}
+                            'Spiderman Pushups': None, 'DB Lateral Raises (DB)': Equipment.dumbbells,
+                            'Shoulder Press (KB)': Equipment.kettle_bell}
 
         self._lower_body = {'Backwards Lunges': None, 'Forward Lunges': None, 'Squats': None, 'Curtsy Lunge': None,
-                            'Goblet Squats (KB)': Equipment.kettle_bell, 'Tip Toe Squats': None, 'Glute Bridge': None,
-                            'Jumping Lunges': None, 'Split Jump Squats': None}
+                            'Tip Toe Squats': None, 'Glute Bridge': None,
+                            'Jumping Lunges': None, 'Split Jump Squats': None, 'Drop Squats': None}
 
         self._core = {'V-Ups': None, 'Bicycle Crunches': None, 'Flutter Kicks': None, 'Commandos': None,
                       'Situps': None, 'Russian Twists': None, 'Supermans': None, 'Bird Dogs': None,
                       'Renegade Rows (DB)': Equipment.dumbbells, 'Inch Worms': None, 'Leg Raises': None,
-                      'Kickouts': None,
-                      'Plank Jack': None}
+                      'Kickouts': None, 'Plank Jack': None, 'Pullovers (KB)': Equipment.kettle_bell}
 
-        self._total_body = {'Burpees': None, 'Thrusters (DB)': Equipment.dumbbells, 'Pushups': None}
+        self._total_body = {'Burpees': None, 'Thrusters (DB)': Equipment.dumbbells, 'Pushups': None,
+                            'Squat Thrusts': None, 'Goblet Squats (KB)': Equipment.kettle_bell,
+                            'Pistol Squat (KB)': Equipment.kettle_bell}
 
         self._cardio = {'Jump Squats': None, 'Jumping Jacks': None, 'KB Swings (KB)': Equipment.kettle_bell,
                         'Snow Boarders': None, 'Skaters': None, 'High Knees': None, 'Mountain Climbers': None,

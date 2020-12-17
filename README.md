@@ -23,6 +23,9 @@ The deck-of-cards-workout automates the Deck of Cards Workout routine.
 
 --kettlebell, -k = Kettle bell available
 
+--trx, -t = TRX available
 
-     
+--jumprope, -j = Jump rope available
 
+--equipmentonly, -o = Only select exercises that use equipment.  No body weight exercises
+(NOTE: Jumprope is only used for Cardio, thus can not be the only equipment used with this setting.)
